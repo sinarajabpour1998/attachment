@@ -1,0 +1,35 @@
+{
+    "name": "sinarajabpour1998/attachment",
+    "type": "library",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vahid Ashourzadeh",
+            "email": "v.ashourzadeh@gmail.com"
+        },
+        {
+            "name": "Sina Rajabpour",
+            "email": "sina.rajabpour@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "7.1.*|7.2.*|7.3.*|7.4.*|8.*",
+        "laravel/framework": "7.*|8.*",
+        "plank/laravel-mediable": "5.*",
+        "morilog/jalali": "3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sinarajabpour1998\\Attachment\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sinarajabpour1998\\Attachment\\AttachmentServiceProvider"
+            ]
+        }
+    }
+}

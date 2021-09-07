@@ -27,11 +27,17 @@ class AjaxUploadController extends Controller
     public function local($request)
     {
         if( $request->has('file_type') && ($request->file_type == 'image' || $request->file_type == 'video') ) {
-            $disk = 'public';
+            if ($request->has('disk')){
+                $disk = $request->disk;
+            }else{
+                $disk = 'public';
+            }
         } else {
-            ( $request->has('disk') && $request->file_type == 'attachment' )
-                ? $disk = $request->disk
-                : $disk = 'private';
+            if ( $request->has('disk') && $request->file_type == 'attachment' ){
+                $disk = $request->disk;
+            }else{
+                $disk = 'private';
+            }
         }
 
         (config('attachment.hash_file_names'))

@@ -12,7 +12,7 @@ class AttachmentHelper
     protected function setMedia($model)
     {
         if(is_null($this->media)) {
-            $this->media = $model->withMedia()->first()->media;
+            $this->media = $model->withMedia()->latest()->first()->media;
         }
     }
 

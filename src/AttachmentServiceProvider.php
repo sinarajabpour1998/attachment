@@ -2,6 +2,8 @@
 
 namespace Sinarajabpour1998\Attachment;
 
+use Sinarajabpour1998\Attachment\Facades\AttachmentFacade;
+use Sinarajabpour1998\Attachment\Helpers\AttachmentHelper;
 use Sinarajabpour1998\Attachment\View\Components\Attachment as AttachmentComponent;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\Image;
@@ -18,7 +20,7 @@ class AttachmentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        AttachmentFacade::shouldProxyTo(AttachmentHelper::class);
     }
 
 

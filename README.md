@@ -377,3 +377,15 @@ $article->getMedia('featured_image')->count() > 0 ? $article->getMedia('featured
 // and for show variant
 $article->getMedia('featured_image')->count() > 0 ? $article->getMedia('featured_image')->first()->findVariant('thumbnail')->getUrl() : '';
 ```
+
+#### Delete files
+```php
+<?php
+// Model is your model class like Product
+public function deleteFiles(Product $product)
+{
+    AttachmentFacade::deleteMediaCompletely($product); // Delete all files and variants completely
+    AttachmentFacade::deleteMediaVariants($product); // Only delete media variants 
+    AttachmentFacade::deleteMedia($product); // Only delete media
+}
+```

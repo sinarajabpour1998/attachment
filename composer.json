@@ -18,7 +18,8 @@
         "php": "7.1.*|7.2.*|7.3.*|7.4.*|8.*",
         "laravel/framework": "7.*|8.*",
         "plank/laravel-mediable": "5.*",
-        "morilog/jalali": "3.*"
+        "morilog/jalali": "3.*",
+        "sinarajabpour1998/log-manager": "1.*"
     },
     "autoload": {
         "psr-4": {

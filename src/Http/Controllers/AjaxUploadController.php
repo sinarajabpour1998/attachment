@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\URL;
 use Plank\Mediable\Facades\ImageManipulator;
 use Plank\Mediable\Facades\MediaUploader;
 use Plank\Mediable\Media;
+use Sinarajabpour1998\LogManager\Facades\LogFacade;
 
 class AjaxUploadController extends Controller
 {
@@ -61,8 +62,10 @@ class AjaxUploadController extends Controller
                 $variantMedia[] = ImageManipulator::createImageVariant($media, $variant);
             }
             $response->thumbnail = Storage::disk($disk)->url($variantMedia[0]->getDiskPath());
+            LogFacade::generateLog("upload_media", "Image id : " . $media->id);
         } elseif( $request->file_type == 'video' ) {
             $response->file_url = Storage::disk($disk)->url($media->getDiskPath());
+            LogFacade::generateLog("upload_file", "Video id : " . $media->id);
         } elseif( $request->file_type == 'attachment' ) {
             $response->file_url =  ( config('filesystems.disks.' . $disk . '.visibility') == 'private' )
                 ?
@@ -72,8 +75,8 @@ class AjaxUploadController extends Controller
                     ['path' => $media->getDiskPath()]
                 )
                 :
-                Storage::disk($disk)->url($media->getDiskPath())
-            ;
+                Storage::disk($disk)->url($media->getDiskPath());
+            LogFacade::generateLog("upload_file", "Attachment id : " . $media->id);
         }
         return response()->json( $response );
     }
@@ -101,8 +104,10 @@ class AjaxUploadController extends Controller
                 $variantMedia[] = ImageManipulator::createImageVariant($media, $variant);
             }
             $response->thumbnail = config('filesystems.disks.' . $request->disk . '.protocol')  . '://' . config('filesystems.disks.' . $request->disk . '.host') . '/' . $variantMedia[0]->getDiskPath();
+            LogFacade::generateLog("upload_remote_media", "Image id : " . $media->id);
         } else {
             $response->file_url = config('filesystems.disks.' . $request->disk . '.protocol')  . '://' . config('filesystems.disks.' . $request->disk . '.host') . '/' .  $media->getDiskPath();
+            LogFacade::generateLog("upload_remote_file", "File id : " . $media->id);
         }
 
         return response()->json( $response );
@@ -119,9 +124,11 @@ class AjaxUploadController extends Controller
                 }
             }
             Storage::disk($media->disk)->delete($media->getDiskPath());
+            LogFacade::generateLog("delete_media", "Image id : " . $media->id);
             $media->delete();
         } else {
             Storage::disk($media->disk)->delete($media->getDiskPath());
+            LogFacade::generateLog("delete_file", "File id : " . $media->id);
             $media->delete();
         }
 

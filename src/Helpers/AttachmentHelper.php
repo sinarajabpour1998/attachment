@@ -28,9 +28,8 @@ class AttachmentHelper
 
     public function deleteMedia($model)
     {
-        $this->setMedia($model);
-        if ($this->media->count() != 0){
-            foreach ($this->media as $media){
+        if ($model->media->count() != 0){
+            foreach ($model->media as $media){
                 $media->delete();
             }
             return true;
@@ -41,10 +40,9 @@ class AttachmentHelper
 
     public function deleteMediaVariants($model)
     {
-        $this->setMedia($model);
-        if ($this->media->count() != 0){
+        if ($model->media->count() != 0){
             foreach(config('attachment.image_variant_list') as $variant) {
-                foreach ($this->media as $media){
+                foreach ($model->media as $media){
                     if($media->hasVariant($variant)) {
                         Storage::disk($media->disk)->delete($media->findVariant($variant)->getDiskPath());
                         $media->findVariant($variant)->delete();

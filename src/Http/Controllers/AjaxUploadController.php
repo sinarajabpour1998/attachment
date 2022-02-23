@@ -41,14 +41,23 @@ class AjaxUploadController extends Controller
             }
         }
 
-        (config('attachment.hash_file_names'))
-            ? $media = MediaUploader::fromSource($request->file)
-            ->toDestination($disk, jdate()->format('Y/m'))
-            ->useHashForFilename()
-            ->upload()
-            : $media = MediaUploader::fromSource($request->file)
-            ->toDestination($disk, jdate()->format('Y/m'))
-            ->upload();
+        if (config('attachment.hash_file_names')) {
+            $media = MediaUploader::fromSource($request->file)
+                ->toDestination($disk, jdate()->format('Y/m'))
+                ->useHashForFilename()
+                ->upload();
+        }else {
+            if ($request->file_type == 'video') {
+                $media = MediaUploader::fromSource($request->file)
+                    ->setMaximumSize(209715200)
+                    ->toDestination($disk, jdate()->format('Y/m'))
+                    ->upload();
+            }else {
+                $media = MediaUploader::fromSource($request->file)
+                    ->toDestination($disk, jdate()->format('Y/m'))
+                    ->upload();
+            }
+        }
 
         $response = new \stdClass();
         $response->status = 200;

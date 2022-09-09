@@ -36,7 +36,8 @@ class AttachmentServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->mergeConfigFrom(__DIR__ . '/config/attachment.php', 'attachment');
         $this->publishes([
-            __DIR__.'/config/attachment.php' =>config_path('attachment.php')
+            __DIR__.'/config/attachment.php' =>config_path('attachment.php'),
+            __DIR__.'/views/' => resource_path('views/vendor/attachment'),
         ], 'attachment');
 
         $this->loadViewComponentsAs('', [

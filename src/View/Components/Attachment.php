@@ -146,33 +146,33 @@ class Attachment extends Component
     {
         // Render image type of components
         if($this->type == 'image' && $this->multiple == 'false' && $this->page == 'create')
-            return view('attachment::components.image_single_create');
+            return view('vendor.attachment.components.image_single_create');
         if($this->type == 'image' && $this->multiple == 'true' && $this->page == 'create')
-            return view('attachment::components.image_multiple_create');
+            return view('vendor.attachment.components.image_multiple_create');
         if($this->type == 'image' && $this->multiple == 'false' && $this->page == 'edit')
-            return view('attachment::components.image_single_edit', ['data' => $this->data]);
+            return view('vendor.attachment.components.image_single_edit', ['data' => $this->data]);
         if($this->type == 'image' && $this->multiple == 'true' && $this->page == 'edit')
-            return view('attachment::components.image_multiple_edit', ['data' => $this->data]);
+            return view('vendor.attachment.components.image_multiple_edit', ['data' => $this->data]);
 
         // Render attachment type of components
         if($this->type == 'attachment' && $this->multiple == 'false' && $this->page == 'create')
-            return view('attachment::components.attachment_single_create');
+            return view('vendor.attachment.components.attachment_single_create');
         if($this->type == 'attachment' && $this->multiple == 'true' && $this->page == 'create')
-            return view('attachment::components.attachment_multiple_create');
+            return view('vendor.attachment.components.attachment_multiple_create');
         if($this->type == 'attachment' && $this->multiple == 'false' && $this->page == 'edit')
-            return view('attachment::components.attachment_single_edit', ['data' => $this->data]);
+            return view('vendor.attachment.components.attachment_single_edit', ['data' => $this->data]);
         if($this->type == 'attachment' && $this->multiple == 'true' && $this->page == 'edit')
-            return view('attachment::components.attachment_multiple_edit', ['data' => $this->data]);
+            return view('vendor.attachment.components.attachment_multiple_edit', ['data' => $this->data]);
 
         // Render video type of components
         if($this->type == 'video' && $this->multiple == 'false' && $this->page == 'create')
-            return view('attachment::components.video_single_create');
+            return view('vendor.attachment.components.video_single_create');
         if($this->type == 'video' && $this->multiple == 'true' && $this->page == 'create')
-            return view('attachment::components.video_multiple_create');
+            return view('vendor.attachment.components.video_multiple_create');
         if($this->type == 'video' && $this->multiple == 'false' && $this->page == 'edit')
-            return view('attachment::components.video_single_edit', ['data' => $this->data]);
+            return view('vendor.attachment.components.video_single_edit', ['data' => $this->data]);
         if($this->type == 'video' && $this->multiple == 'true' && $this->page == 'edit')
-            return view('attachment::components.video_multiple_edit', ['data' => $this->data]);
+            return view('vendor.attachment.components.video_multiple_edit', ['data' => $this->data]);
 
     }
 }
